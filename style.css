@@ -1,0 +1,144 @@
+*, *::before, *::after {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.3;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    background: #e57e80;
+}
+
+img {
+    display:block;
+    width: 100%;
+    height: auto;
+}
+
+.gallery {
+    display: grid;
+    gap: 1rem;
+    height: 100vh;
+    width: 100%;
+    grid-template-columns: repeat(4, 25vh);
+    grid-template-rows: repeat(2, 25vh);
+    justify-content: center;
+    align-content: center;
+}
+
+.gallery a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery a img {
+    mix-blend-mode: multiply;
+    transition: 0.4s;
+}
+
+.gallery a:hover img {
+    transform: scale(1.05);
+}
+
+.gallery a:hover .layer {
+    background-color: #fff;
+}
+
+.gallery a .layer {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: background-color 0.4s;
+    z-index: -1;
+}
+
+.gallery a .text {
+    color: #fff;
+    position: absolute;
+    bottom: 1rem;
+    right: 50%;
+    transform: translateX(50%);
+    font-weight: 500;
+    transition: opacity 0.4s;
+    background: #000;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+.gallery a:hover .text {
+    opacity: 1;
+}
+
+.gallery .block {
+    background-color: #000;
+    padding: 2rem;
+    width: 25vh;
+    height: 25vh;
+    color: #fff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    display: none;
+}
+
+.modal .dialog {
+    background: #000;
+    color: #fff;
+    max-width: 1000px;
+    max-height: 500px;
+    margin: auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    transition: transform 0.4s, opacity 0.4s;
+    opacity: 0;
+    transform: translateY(-150px);
+}
+
+.modal .dialog .text {
+    padding: 3rem;
+}
+
+.text h2 {
+    margin-bottom: 1rem;
+}
+
+.modal .dialog .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
